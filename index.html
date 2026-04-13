@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The One — Stop Swiping. Start Choosing.</title>
+  <meta name="description" content="The dating app that limits your conversations so you focus on who matters. AI matching, intentional connections, one person at a time.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://drvanus.github.io/theone-app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="The One — Stop Swiping. Start Choosing.">
+  <meta property="og:description" content="The dating app that limits your conversations so you focus on who matters. AI matching, intentional connections.">
+  <meta property="og:url" content="https://drvanus.github.io/theone-app/">
+  <meta property="og:site_name" content="The One">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The One — Stop Swiping. Start Choosing.">
+  <meta name="twitter:description" content="The dating app that limits your conversations so you focus on who matters.">
+
+  <!-- Favicon: inline heart SVG -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>❤️</text></svg>">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0D0D0D;
+      --fg: #eeeeee;
+      --card: #1A1A1A;
+      --card-fg: #eeeeee;
+      --primary: #E63946;
+      --primary-fg: #ffffff;
+      --primary-dark: #C1121F;
+      --primary-light: #FFB3B8;
+      --muted: #1A1A1A;
+      --muted-fg: gray;
+      --accent: #2A1015;
+      --accent-fg: #eeeeee;
+      --warm-gold: #D4A373;
+      --border: rgba(230,57,70,0.12);
+      --primary-glow: rgba(230,57,70,0.08);
+      --radius: 0.625rem;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container { max-width: 1152px; margin: 0 auto; padding: 0 24px; }
+
+    .gradient-text-rose {
+      background: linear-gradient(135deg, #FFB3B8 0%, #E63946 50%, #C1121F 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .gradient-text-warm {
+      background: linear-gradient(135deg, #D4A373 0%, #C4956A 50%, #A67B5B 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .btn-rose {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #E63946, #C1121F);
+      color: #ffffff;
+      font-weight: 700; font-size: 0.9rem; font-family: inherit;
+      border-radius: 12px; border: none; cursor: pointer;
+      box-shadow: 0 4px 20px rgba(230,57,70,0.25);
+      transition: all 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .btn-rose:hover { transform: translateY(-2px); box-shadow: 0 6px 30px rgba(230,57,70,0.4); background: linear-gradient(135deg, #FF4D5A, #E63946); }
+    .btn-rose svg { width: 16px; height: 16px; }
+
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px;
+      background: rgba(230,57,70,0.05);
+      color: #FFB3B8;
+      font-weight: 600; font-size: 0.9rem; font-family: inherit;
+      border-radius: 12px; border: 1px solid var(--border); cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn-outline:hover { background: rgba(230,57,70,0.1); border-color: rgba(230,57,70,0.3); }
+
+    .section-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--primary); margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.5rem; font-weight: 800; line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .section-desc {
+      font-size: 1.05rem; color: var(--muted-fg);
+      max-width: 600px; margin-top: 14px; line-height: 1.65;
+    }
+
+    section { padding: 96px 0; }
+
+    .section-divider {
+      height: 1px; max-width: 768px; margin: 0 auto;
+      background: linear-gradient(90deg, transparent, rgba(230,57,70,0.2), transparent);
+      position: relative;
+    }
+    .section-divider::after {
+      content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%);
+      width: 200px; height: 16px;
+      background: radial-gradient(ellipse, rgba(230,57,70,0.08), transparent);
+    }
+
+    /* Icons */
+    .icon-box {
+      width: 42px; height: 42px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(230,57,70,0.08);
+      border: 1px solid var(--border);
+      border-radius: 10px; flex-shrink: 0;
+    }
+    .icon-box svg { width: 20px; height: 20px; color: var(--primary); stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* Animations */
+    @keyframes fade-in-up {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.3; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 0.55; transform: translate(-50%,-50%) scale(1.05); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .anim { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+    .anim.visible { opacity: 1; transform: translateY(0); }
+    .anim-d1 { transition-delay: 0.1s; }
+    .anim-d2 { transition-delay: 0.2s; }
+    .anim-d3 { transition-delay: 0.3s; }
+    .anim-d4 { transition-delay: 0.4s; }
+    .anim-d5 { transition-delay: 0.5s; }
+    .anim-d6 { transition-delay: 0.6s; }
+    .anim-d7 { transition-delay: 0.7s; }
+
+    /* Shimmer on gradient text */
+    .shimmer-text {
+      background: linear-gradient(90deg, #FFB3B8 0%, #E63946 40%, #FFB3B8 60%, #E63946 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+
+    /* Platform badge */
+    .platform-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 16px; border-radius: 20px;
+      background: rgba(230,57,70,0.05);
+      border: 1px solid var(--border);
+      font-size: 0.78rem; font-weight: 500; color: var(--muted-fg);
+      margin-bottom: 20px;
+      animation: fade-in-up 0.8s ease both;
+    }
+    .platform-badge span { color: #FFB3B8; }
+
+    /* Scroll to top */
+    .scroll-top {
+      position: fixed; bottom: 24px; right: 24px; z-index: 50;
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(230,57,70,0.15); border: 1px solid var(--border);
+      border-radius: 10px; cursor: pointer;
+      opacity: 0; transform: translateY(10px);
+      transition: all 0.3s ease; pointer-events: none;
+    }
+    .scroll-top.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    .scroll-top:hover { background: rgba(230,57,70,0.25); }
+    .scroll-top svg { width: 18px; height: 18px; color: var(--primary); stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+    /* Pricing toggle */
+    .pricing-toggle {
+      display: inline-flex; gap: 4px; justify-content: center; margin-top: 20px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 4px;
+    }
+    .pricing-toggle-wrap { text-align: center; margin-top: 20px; }
+    .toggle-btn {
+      padding: 8px 20px; border-radius: 8px; border: none;
+      background: transparent; color: var(--muted-fg);
+      font-size: 0.85rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; transition: all 0.2s;
+    }
+    .toggle-btn.active { background: linear-gradient(135deg, #E63946, #C1121F); color: #fff; }
+    .toggle-save { font-size: 0.7rem; color: #FFB3B8; font-weight: 600; opacity: 0.8; }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,13,13,0.7);
+      backdrop-filter: saturate(180%) blur(16px);
+      -webkit-backdrop-filter: saturate(180%) blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .nav-logo .logo-heart { width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #E63946, #C1121F); border-radius: 10px; box-shadow: 0 0 12px rgba(230,57,70,0.3); }
+    .nav-logo .logo-heart svg { width: 20px; height: 20px; fill: #fff; stroke: none; }
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a { font-size: 0.85rem; color: var(--muted-fg); transition: color 0.2s; font-weight: 500; }
+    .nav-links a:hover { color: var(--fg); }
+    .nav-links a.nav-cta {
+      padding: 8px 18px; background: linear-gradient(135deg, #E63946, #C1121F);
+      color: #ffffff; font-weight: 700; font-size: 0.8rem;
+      border-radius: 8px; transition: all 0.2s;
+      box-shadow: 0 2px 8px rgba(230,57,70,0.3);
+    }
+    .nav-links a.nav-cta:hover { box-shadow: 0 4px 16px rgba(230,57,70,0.4); background: linear-gradient(135deg, #FF4D5A, #E63946); }
+    .nav-toggle { display: none; background: none; border: none; color: var(--fg); cursor: pointer; padding: 4px; }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 140px 0 80px; text-align: center; position: relative; overflow: hidden;
+    }
+    .hero-layout {
+      display: flex; flex-direction: column; align-items: center;
+    }
+    @media (min-width: 1100px) {
+      .hero-layout {
+        flex-direction: row; align-items: center; gap: 56px; text-align: left;
+      }
+      .hero-text { flex: 1; min-width: 0; }
+      .hero-screenshot { margin-top: 0 !important; flex-shrink: 0; }
+      .hero h1 { margin: 0; }
+      .hero .subtitle { margin: 20px 0 0; }
+      .hero-buttons { justify-content: flex-start; }
+      .hero .platform-badge { display: inline-flex; }
+      .hero-phone-frame { max-width: none; }
+    }
+    @media (min-width: 1100px) and (max-width: 1250px) {
+      .hero h1 { font-size: 2.8rem; }
+      .hero-phone-frame .phone-placeholder { max-height: 460px; }
+      .hero-layout { gap: 40px; }
+    }
+    .hero::before {
+      content: ''; position: absolute; top: calc(30% - var(--parallax, 0px)); left: 50%;
+      width: 800px; height: 600px;
+      background: radial-gradient(ellipse, rgba(230,57,70,0.07), transparent 65%);
+      pointer-events: none;
+      animation: pulse-glow 5s ease-in-out infinite;
+    }
+    .hero::after {
+      content: ''; position: absolute; top: 60%; left: 30%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(230,57,70,0.04), transparent 60%);
+      pointer-events: none;
+      animation: pulse-glow 7s ease-in-out 1s infinite;
+    }
+    .hero h1 {
+      font-size: 3.5rem; font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em; max-width: 800px; margin: 0 auto;
+      animation: fade-in-up 0.8s ease both;
+      position: relative;
+    }
+    .hero .subtitle {
+      font-size: 1.1rem; color: var(--muted-fg); max-width: 580px;
+      margin: 20px auto 0; line-height: 1.7;
+      animation: fade-in-up 0.8s ease 0.15s both;
+      position: relative;
+    }
+    .hero-buttons {
+      display: flex; gap: 14px; justify-content: center; margin-top: 32px; flex-wrap: wrap;
+      animation: fade-in-up 0.8s ease 0.3s both;
+      position: relative;
+    }
+    .hero-screenshot {
+      margin-top: 56px; display: flex; justify-content: center;
+      animation: fade-in-up 0.8s ease 0.45s both;
+      position: relative;
+    }
+    .hero-phone-wrap {
+      position: relative; display: inline-block;
+    }
+    .hero-phone-wrap::before {
+      content: ''; position: absolute; inset: -32px;
+      border-radius: 3rem;
+      background: radial-gradient(ellipse, rgba(230,57,70,0.12), transparent 70%);
+      filter: blur(30px);
+      pointer-events: none;
+    }
+    .hero-phone-frame {
+      position: relative;
+      border-radius: 2.5rem;
+      border: 2.5px solid rgba(230,57,70,0.25);
+      background: #000;
+      padding: 8px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4), 0 0 0 1px rgba(230,57,70,0.1), 0 0 80px rgba(230,57,70,0.06);
+      overflow: hidden;
+      max-width: 280px;
+      margin: 0 auto;
+    }
+    .hero-phone-frame .phone-screen {
+      position: relative;
+      border-radius: 2rem;
+      overflow: hidden;
+    }
+    /* Placeholder phone screens */
+    .phone-placeholder {
+      width: 264px; max-height: 520px; min-height: 480px;
+      border-radius: 2rem;
+      display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+      padding: 32px 20px;
+      font-family: 'Inter', sans-serif;
+    }
+    .phone-placeholder.screen-chat {
+      background: linear-gradient(180deg, #1A1A1A 0%, #0D0D0D 100%);
+    }
+    .phone-placeholder.screen-discover {
+      background: linear-gradient(180deg, #1A1A1A 0%, #0D0D0D 100%);
+    }
+    .phone-placeholder .phone-header {
+      font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--primary); margin-bottom: 16px;
+      text-align: center;
+    }
+    .phone-placeholder .phone-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: linear-gradient(135deg, #E63946, #C1121F);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .phone-placeholder .phone-avatar span { font-size: 1.6rem; color: #fff; font-weight: 800; }
+    .phone-placeholder .phone-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .phone-placeholder .phone-meta { font-size: 0.72rem; color: var(--muted-fg); margin-bottom: 20px; }
+    .phone-placeholder .phone-compat {
+      display: flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 20px;
+      background: rgba(230,57,70,0.1); border: 1px solid var(--border);
+      font-size: 0.72rem; font-weight: 600; color: #FFB3B8; margin-bottom: 20px;
+    }
+    .phone-placeholder .phone-bio {
+      font-size: 0.78rem; color: var(--muted-fg); line-height: 1.5; text-align: center;
+      margin-bottom: 20px; max-width: 200px;
+    }
+    .phone-placeholder .phone-interests { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
+    .phone-placeholder .phone-tag {
+      padding: 4px 10px; border-radius: 12px;
+      background: rgba(230,57,70,0.06); border: 1px solid var(--border);
+      font-size: 0.65rem; color: var(--muted-fg); font-weight: 500;
+    }
+    .phone-placeholder .phone-actions { display: flex; gap: 16px; margin-top: auto; }
+    .phone-placeholder .phone-btn {
+      width: 52px; height: 52px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+    }
+    .phone-placeholder .phone-btn.pass {
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+    }
+    .phone-placeholder .phone-btn.pass svg { width: 22px; height: 22px; stroke: var(--muted-fg); fill: none; stroke-width: 2; }
+    .phone-placeholder .phone-btn.like {
+      background: linear-gradient(135deg, #E63946, #C1121F);
+      box-shadow: 0 4px 20px rgba(230,57,70,0.3);
+    }
+    .phone-placeholder .phone-btn.like svg { width: 22px; height: 22px; fill: #fff; stroke: none; }
+
+    /* Chat mockup inside phone */
+    .phone-chat-msg {
+      width: 100%; display: flex; flex-direction: column; gap: 8px;
+      padding: 0 4px;
+    }
+    .phone-chat-bubble {
+      padding: 10px 14px; border-radius: 14px;
+      font-size: 0.72rem; line-height: 1.45; max-width: 85%;
+    }
+    .phone-chat-bubble.sent {
+      background: linear-gradient(135deg, #E63946, #C1121F);
+      color: #fff; align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .phone-chat-bubble.received {
+      background: rgba(255,255,255,0.06); color: var(--fg);
+      align-self: flex-start; border-bottom-left-radius: 4px;
+    }
+    .phone-chat-time {
+      font-size: 0.6rem; color: rgba(128,128,128,0.5); text-align: center; margin-top: 4px;
+    }
+
+    @keyframes crossfade {
+      0%, 42% { opacity: 1; }
+      50%, 92% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    .hero-phone-frame .phone-back {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    }
+    .hero-phone-frame .phone-front {
+      position: relative; z-index: 1;
+      animation: crossfade 10s ease-in-out infinite;
+    }
+
+    /* ── Stats ── */
+    .stats {
+      padding: 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(230,57,70,0.03), transparent, rgba(230,57,70,0.03));
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item {
+      padding: 40px 16px; text-align: center;
+      border-right: 1px solid var(--border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font-size: 2.25rem; font-weight: 800; letter-spacing: -0.02em; }
+    .stat-label {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted-fg); margin-top: 6px;
+    }
+
+    /* ── Core Concept Section ── */
+    .concept-section {
+      position: relative;
+      background-image: radial-gradient(rgba(230,57,70,0.06) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .concept-section::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(230,57,70,0.06), transparent 55%);
+      pointer-events: none;
+    }
+    .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-top: 48px; }
+    .concept-features { display: flex; flex-direction: column; gap: 28px; }
+    .concept-feature { display: flex; gap: 16px; align-items: flex-start; }
+    .concept-feature h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 5px; }
+    .concept-feature p { font-size: 0.85rem; color: var(--muted-fg); line-height: 1.55; }
+
+    .chat-preview {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px; position: relative;
+      box-shadow: 0 16px 60px rgba(0,0,0,0.4), 0 0 40px rgba(230,57,70,0.06);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .chat-label {
+      font-size: 0.65rem; color: var(--muted-fg); text-transform: uppercase;
+      letter-spacing: 0.12em; margin-bottom: 16px; font-weight: 600;
+      opacity: 0.6;
+    }
+    .chat-bubble {
+      padding: 12px 16px; border-radius: 12px; font-size: 0.85rem;
+      line-height: 1.55; margin-bottom: 10px; max-width: 88%;
+    }
+    .chat-user {
+      background: rgba(230,57,70,0.12); border: 1px solid var(--border);
+      margin-left: auto; color: #FFB3B8;
+    }
+    .chat-match {
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ── Features ── */
+    .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 40px; }
+    .feature-card {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 14px; padding: 22px 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .feature-card::before {
+      content: ''; position: absolute; inset: -1px; border-radius: 17px;
+      background: linear-gradient(135deg, rgba(230,57,70,0.25), transparent 50%, rgba(230,57,70,0.15));
+      opacity: 0; transition: opacity 0.3s; z-index: -1;
+    }
+    .feature-card:hover { border-color: rgba(230,57,70,0.3); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(230,57,70,0.08), 0 0 60px rgba(230,57,70,0.04); }
+    .feature-card:hover::before { opacity: 1; }
+    .feature-card .icon-box { margin-bottom: 14px; }
+    .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.82rem; color: var(--muted-fg); line-height: 1.55; }
+
+    /* ── Steps ── */
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 48px; }
+    .step { text-align: center; }
+    .step-num {
+      width: 44px; height: 44px; margin: 0 auto 16px;
+      background: linear-gradient(135deg, #E63946, #C1121F);
+      color: #ffffff; font-weight: 800; font-size: 1rem;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    }
+    .step h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 0.85rem; color: var(--muted-fg); max-width: 260px; margin: 0 auto; line-height: 1.55; }
+
+    /* ── Pricing ── */
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .price-card {
+      background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 24px; position: relative;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .price-card.featured {
+      border-color: var(--primary);
+      box-shadow: 0 0 50px rgba(230,57,70,0.1), 0 0 100px rgba(230,57,70,0.04);
+      background: linear-gradient(180deg, rgba(230,57,70,0.06), rgba(255,255,255,0.02) 40%);
+      transform: scale(1.02);
+    }
+    .price-card.featured:hover { transform: scale(1.02) translateY(-4px); box-shadow: 0 0 60px rgba(230,57,70,0.15), 0 12px 40px rgba(0,0,0,0.3); }
+    .price-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      padding: 4px 14px; background: linear-gradient(135deg, #E63946, #C1121F);
+      color: #ffffff; font-size: 0.65rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em; border-radius: 20px;
+    }
+    .price-card h3 { font-size: 1.15rem; font-weight: 700; }
+    .price-card .price-sub { font-size: 0.8rem; color: var(--muted-fg); margin-top: 4px; }
+    .price-amount { font-size: 2.5rem; font-weight: 800; margin: 20px 0 2px; letter-spacing: -0.02em; }
+    .price-period { font-size: 0.8rem; color: var(--muted-fg); }
+    .price-features { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 10px; }
+    .price-features li {
+      font-size: 0.82rem; color: var(--muted-fg);
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .price-features li::before { content: '\2713'; color: var(--primary); font-weight: 700; flex-shrink: 0; }
+    .price-features li.off { color: rgba(128,128,128,0.4); text-decoration: line-through; }
+    .price-features li.off::before { content: '\2715'; color: rgba(128,128,128,0.3); }
+    .price-card .btn-rose, .price-card .btn-outline { width: 100%; justify-content: center; margin-top: 24px; }
+
+    /* ── FAQ ── */
+    .faq-list { max-width: 680px; margin: 40px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border); transition: background 0.2s; }
+    .faq-item:hover { background: rgba(230,57,70,0.02); }
+    .faq-q {
+      width: 100%; background: none; border: none; color: var(--fg);
+      font-size: 0.95rem; font-weight: 600; text-align: left;
+      padding: 20px 0; cursor: pointer; display: flex;
+      justify-content: space-between; align-items: center; font-family: inherit;
+    }
+    .faq-q .faq-icon { flex-shrink: 0; margin-left: 16px; color: var(--primary); font-size: 1.2rem; transition: transform 0.2s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-item.open .faq-a { max-height: 300px; }
+    .faq-a p { padding: 0 0 20px; font-size: 0.88rem; color: var(--muted-fg); line-height: 1.65; }
+
+    /* ── CTA ── */
+    .cta-section { text-align: center; position: relative; overflow: hidden; }
+    .cta-section::after {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); width: 600px; height: 400px;
+      background: radial-gradient(ellipse, rgba(230,57,70,0.08), transparent 60%);
+      pointer-events: none;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%); width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(230,57,70,0.05), transparent 70%);
+      pointer-events: none;
+    }
+    .signup-form { display: flex; gap: 10px; justify-content: center; margin-top: 28px; flex-wrap: wrap; }
+    .signup-form input {
+      padding: 12px 18px; background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; color: var(--fg); font-size: 0.9rem; font-family: inherit;
+      width: 300px; outline: none; transition: border-color 0.2s;
+    }
+    .signup-form input:focus { border-color: var(--primary); }
+    .signup-form input::placeholder { color: rgba(128,128,128,0.5); }
+
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); padding: 48px 0; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
+    .footer-brand p { font-size: 0.82rem; color: var(--muted-fg); margin-top: 12px; max-width: 280px; line-height: 1.55; }
+    .footer-col h4 { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(128,128,128,0.6); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { font-size: 0.82rem; color: var(--muted-fg); transition: color 0.2s; }
+    .footer-col a:hover { color: #FFB3B8; }
+    .footer-bottom {
+      margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.72rem; color: rgba(128,128,128,0.5);
+    }
+
+    /* ── Responsive ── */
+
+    @media (max-width: 1099px) {
+      .section-title { font-size: 2.15rem; }
+      .features-grid { grid-template-columns: repeat(3, 1fr); }
+      .concept-grid { gap: 40px; }
+      section { padding: 72px 0; }
+      .nav-links { gap: 20px; }
+      .nav-links a { font-size: 0.8rem; }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: rgba(13,13,13,0.95); backdrop-filter: blur(16px);
+        padding: 20px 24px; gap: 16px; border-bottom: 1px solid var(--border);
+      }
+      .nav-toggle { display: block; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero .subtitle { font-size: 1rem; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .concept-grid { grid-template-columns: 1fr; gap: 32px; }
+      .chat-preview { order: -1; }
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps { grid-template-columns: 1fr; gap: 24px; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .footer-grid { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+      .section-title { font-size: 1.85rem; }
+      section { padding: 64px 0; }
+    }
+
+    @media (max-width: 767px) {
+      .hero h1 { font-size: 2.1rem; }
+      .hero { padding: 120px 0 60px; }
+      .pricing-grid { max-width: 380px; }
+      .stat-number { font-size: 1.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .signup-form { flex-direction: column; align-items: center; }
+      .signup-form input { width: 100%; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero { padding: 110px 0 48px; }
+      .container { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="nav-logo">
+      <div class="logo-heart">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <span><span class="gradient-text-rose">The</span> One</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#how-it-works">How It Works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#signup" class="nav-cta">Get Early Access</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-layout">
+      <div class="hero-text">
+        <div class="platform-badge">Coming Soon <span>to</span> iOS & Android</div>
+        <h1>Stop Swiping.<br><span class="shimmer-text">Start Choosing.</span></h1>
+        <p class="subtitle">Not everyone. Just the one. One person gets your full attention until you find who you're looking for.</p>
+        <div class="hero-buttons">
+          <a href="#signup" class="btn-rose">Get Early Access <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          <a href="#how-it-works" class="btn-outline">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-screenshot">
+        <div class="hero-phone-wrap">
+          <div class="hero-phone-frame">
+            <div class="phone-screen">
+              <!-- Back screen: Chat view -->
+              <div class="phone-placeholder screen-chat phone-back">
+                <div class="phone-header">Conversation</div>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+                  <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A373,#A67B5B);display:flex;align-items:center;justify-content:center;">
+                    <span style="font-size:0.75rem;color:#fff;font-weight:700">S</span>
+                  </div>
+                  <div>
+                    <div style="font-size:0.8rem;font-weight:700;color:#fff">Sarah</div>
+                    <div style="font-size:0.6rem;color:var(--muted-fg)">Active now</div>
+                  </div>
+                </div>
+                <div class="phone-chat-msg">
+                  <div class="phone-chat-bubble received">I noticed you mentioned hiking the PCT. What section was your favorite?</div>
+                  <div class="phone-chat-bubble sent">The Sierra Nevada stretch was incredible. Have you done any long-distance trails?</div>
+                  <div class="phone-chat-bubble received">Just the JMT last summer! Already planning my next one.</div>
+                  <div class="phone-chat-bubble sent">That's amazing. I'd love to hear more about it over coffee sometime.</div>
+                  <div class="phone-chat-time">Just now</div>
+                </div>
+              </div>
+              <!-- Front screen: Discover view -->
+              <div class="phone-placeholder screen-discover phone-front">
+                <div class="phone-header">Discover</div>
+                <div class="phone-avatar"><span>S</span></div>
+                <div class="phone-name">Sarah, 27</div>
+                <div class="phone-meta">2.4 miles away</div>
+                <div class="phone-compat">
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#FFB3B8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  92% Compatible
+                </div>
+                <div class="phone-bio">Avid hiker, amateur chef, and professional dog petter. Looking for someone who values depth over breadth.</div>
+                <div class="phone-interests">
+                  <span class="phone-tag">Hiking</span>
+                  <span class="phone-tag">Cooking</span>
+                  <span class="phone-tag">Travel</span>
+                  <span class="phone-tag">Dogs</span>
+                </div>
+                <div class="phone-actions">
+                  <div class="phone-btn pass">
+                    <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+                  </div>
+                  <div class="phone-btn like">
+                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item"><div class="stat-number gradient-text-rose">1</div><div class="stat-label">Conversation at a Time</div></div>
+      <div class="stat-item"><div class="stat-number gradient-text-rose">100%</div><div class="stat-label">Intentional</div></div>
+      <div class="stat-item"><div class="stat-number gradient-text-rose">AI</div><div class="stat-label">Compatibility Scoring</div></div>
+      <div class="stat-item"><div class="stat-number gradient-text-rose">3</div><div class="stat-label">Tiers to Choose</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- Core Concept Section -->
+<section class="concept-section" id="concept">
+  <div class="container">
+    <div class="anim">
+      <span class="section-label">The Core Idea</span>
+      <h2 class="section-title">One Conversation.<br><span class="gradient-text-rose">Total Attention.</span></h2>
+      <p class="section-desc">Most dating apps flood you with options. The One limits your active conversations, forcing you to invest real attention in the people you choose.</p>
+    </div>
+    <div class="concept-grid">
+      <div class="concept-features anim">
+        <div class="concept-feature">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <div><h4>Intentional Limits</h4><p>Free members get 1 active conversation. Choose wisely, or upgrade for more. Every connection counts.</p></div>
+        </div>
+        <div class="concept-feature">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><h4>AI Compatibility</h4><p>Our AI scores compatibility before you match, so your limited picks are backed by data, not just photos.</p></div>
+        </div>
+        <div class="concept-feature">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+          <div><h4>Graduation System</h4><p>When a conversation runs its course, "graduate" to unlock your next pick. No ghosting spiral.</p></div>
+        </div>
+        <div class="concept-feature">
+          <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+          <div><h4>Date Mode</h4><p>Ready to meet? Activate Date Mode to share real-time location with a trusted contact and stay safe on every date.</p></div>
+        </div>
+      </div>
+      <div class="chat-preview anim">
+        <div class="chat-label">Quality Conversation</div>
+        <div class="chat-bubble chat-match">I noticed you mentioned hiking the PCT. What section was your favorite?</div>
+        <div class="chat-bubble chat-user">Oh, the Sierra Nevada stretch was unreal. Have you done any long-distance trails?</div>
+        <div class="chat-bubble chat-match">Just the JMT last summer. Already planning my next one.</div>
+        <div class="chat-bubble chat-user">That's amazing. I'd love to hear more about it over coffee sometime.</div>
+        <div class="chat-bubble chat-match" style="margin-bottom:0">I'd really like that. How about Saturday at the place downtown?</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Features -->
+<section id="features">
+  <div class="container">
+    <div style="text-align:center" class="anim">
+      <span class="section-label">Features</span>
+      <h2 class="section-title">Everything You Need to<br><span class="gradient-text-rose">Find the One</span></h2>
+      <p class="section-desc" style="margin:14px auto 0">Curated matching, real conversations, and safety-first design.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card anim anim-d1">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><circle cx="12" cy="12" r="3" fill="none" stroke-width="1.5"/></svg></div>
+        <h3>AI Matchmaker</h3>
+        <p>Smart compatibility scoring analyzes interests, values, and communication style to surface your best matches.</p>
+      </div>
+      <div class="feature-card anim anim-d2">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+        <h3>Conversation Limits</h3>
+        <p>1 free, 3 premium, 5 elite active conversations. Quality over quantity, always.</p>
+      </div>
+      <div class="feature-card anim anim-d3">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <h3>Curated Daily Picks</h3>
+        <p>Each day, receive AI-selected profiles tailored to your preferences and past interactions.</p>
+      </div>
+      <div class="feature-card anim anim-d4">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <h3>Date Mode</h3>
+        <p>Share live location with a trusted contact, set check-in timers, and feel safe on every first date.</p>
+      </div>
+      <div class="feature-card anim anim-d1">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Verification Badges</h3>
+        <p>Photo verification and social media linking so you know who you're talking to. Trust built in.</p>
+      </div>
+      <div class="feature-card anim anim-d2">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></div>
+        <h3>Graduation System</h3>
+        <p>End a conversation gracefully when it's not working. Free up your slot, no ghosting required.</p>
+      </div>
+      <div class="feature-card anim anim-d3">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 10h.01"/><path d="M12 10h.01"/><path d="M16 10h.01"/></svg></div>
+        <h3>Smart Icebreakers</h3>
+        <p>AI-generated conversation starters based on shared interests to get past awkward openings.</p>
+      </div>
+      <div class="feature-card anim anim-d4">
+        <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg></div>
+        <h3>Privacy First</h3>
+        <p>Your data stays yours. No selling to third parties. Blur photos until you're ready. Block and report instantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- How It Works -->
+<section id="how-it-works">
+  <div class="container">
+    <div style="text-align:center" class="anim">
+      <span class="section-label">Get Started</span>
+      <h2 class="section-title">Find Your Person in <span class="gradient-text-rose">3 Steps</span></h2>
+    </div>
+    <div class="steps">
+      <div class="step anim"><div class="step-num">1</div><h3>Create Your Profile</h3><p>Sign up, verify your identity, and tell us what you're looking for. Our AI starts learning your preferences immediately.</p></div>
+      <div class="step anim"><div class="step-num">2</div><h3>Choose Your One</h3><p>Browse curated picks or discover new people. When someone catches your eye, start your one conversation. Make it count.</p></div>
+      <div class="step anim"><div class="step-num">3</div><h3>Connect for Real</h3><p>Have a real conversation. When you're ready, activate Date Mode and take it offline. That's the whole point.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Pricing -->
+<section id="pricing">
+  <div class="container">
+    <div style="text-align:center" class="anim">
+      <span class="section-label">Pricing</span>
+      <h2 class="section-title">Choose Your <span class="gradient-text-rose">Plan</span></h2>
+      <p class="section-desc" style="margin:14px auto 0">Start free. Upgrade when you're ready for more.</p>
+      <div class="pricing-toggle-wrap">
+        <div class="pricing-toggle">
+          <button class="toggle-btn active" id="toggleMonthly" onclick="setPricing('monthly')">Monthly</button>
+          <button class="toggle-btn" id="toggleYearly" onclick="setPricing('yearly')">Yearly <span class="toggle-save">Save 20%</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card anim">
+        <h3>Free</h3><p class="price-sub">Start with intention</p>
+        <div class="price-amount gradient-text-rose">$0</div><div class="price-period">forever</div>
+        <ul class="price-features">
+          <li>1 active conversation</li>
+          <li>AI compatibility scores</li>
+          <li>5 daily picks</li>
+          <li>Basic profile</li>
+          <li>Photo verification</li>
+          <li class="off">Multiple conversations</li>
+          <li class="off">AI matchmaker</li>
+          <li class="off">Date Mode</li>
+        </ul>
+        <a href="#signup" class="btn-outline">Sign Up Free</a>
+      </div>
+      <div class="price-card featured anim">
+        <div class="price-badge">Most Popular</div>
+        <h3>Premium</h3><p class="price-sub">For serious daters</p>
+        <div class="price-amount gradient-text-rose">$14.99</div><div class="price-period">/month</div>
+        <ul class="price-features">
+          <li>3 active conversations</li>
+          <li>AI compatibility scores</li>
+          <li>15 daily picks</li>
+          <li>Enhanced profile</li>
+          <li>All verification badges</li>
+          <li>Date Mode</li>
+          <li>AI icebreakers</li>
+          <li>Priority support</li>
+        </ul>
+        <a href="#signup" class="btn-rose">Go Premium</a>
+      </div>
+      <div class="price-card anim">
+        <h3>Elite</h3><p class="price-sub">The full experience</p>
+        <div class="price-amount gradient-text-rose">$29.99</div><div class="price-period">/month</div>
+        <ul class="price-features">
+          <li>5 active conversations</li>
+          <li>AI Elite Matchmaker</li>
+          <li>Unlimited daily picks</li>
+          <li>Premium profile boost</li>
+          <li>All verification badges</li>
+          <li>Date Mode + advanced safety</li>
+          <li>AI icebreakers</li>
+          <li>Concierge date planning</li>
+          <li>Early access to features</li>
+        </ul>
+        <a href="#signup" class="btn-rose">Go Elite</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div style="text-align:center" class="anim">
+      <span class="section-label">FAQ</span>
+      <h2 class="section-title">Common <span class="gradient-text-rose">Questions</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-q">What is The One?<span class="faq-icon">+</span></button><div class="faq-a"><p>The One is a dating app built around intentional connections. Instead of swiping endlessly, you get a limited number of active conversations at a time. This forces you to focus on the people you actually want to get to know.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Why limit conversations?<span class="faq-icon">+</span></button><div class="faq-a"><p>Unlimited options lead to decision paralysis and shallow connections. By capping your active conversations, every choice becomes meaningful. Research shows that people form stronger bonds when they invest real attention.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does the AI matching work?<span class="faq-icon">+</span></button><div class="faq-a"><p>Our AI analyzes your profile, stated preferences, communication patterns, and interaction history to generate compatibility scores. It gets smarter over time as it learns what kind of connections work best for you.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What is the graduation system?<span class="faq-icon">+</span></button><div class="faq-a"><p>When a conversation has run its course, either person can "graduate" it. This ends the conversation respectfully and frees up a slot for a new connection. No ghosting needed.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What is Date Mode?<span class="faq-icon">+</span></button><div class="faq-a"><p>Date Mode is our safety feature for meeting in person. Share your real-time location with a trusted contact, set automatic check-in timers, and access an emergency button. Your safety comes first.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Is my data safe?<span class="faq-icon">+</span></button><div class="faq-a"><p>Yes. We never sell your data to third parties. Photos can be blurred until you choose to reveal them. All messages are encrypted. You can delete your account and all data at any time.</p></div></div>
+      <div class="faq-item"><button class="faq-q">When is The One launching?<span class="faq-icon">+</span></button><div class="faq-a"><p>We're currently in development and preparing for our App Store launch. Sign up for early access below and you'll be the first to know when we go live on iOS and Android.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CTA -->
+<section class="cta-section" id="signup">
+  <div class="container">
+    <h2 class="section-title anim">Ready to Find <span class="gradient-text-rose">The One?</span></h2>
+    <p class="section-desc anim" style="margin:16px auto 0;text-align:center">Stop swiping through hundreds. Start choosing the one person who deserves your attention.</p>
+    <form class="signup-form anim" onsubmit="handleSignup(event)">
+      <input type="email" id="signupEmail" placeholder="Enter your email" required>
+      <button type="submit" class="btn-rose">Get Early Access <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </form>
+    <p class="anim" style="margin-top:12px;font-size:0.75rem;color:rgba(128,128,128,0.5)">iOS & Android. No spam. We'll notify you at launch.</p>
+  </div>
+</section>
+
+<!-- Scroll to Top -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">
+  <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <div class="logo-heart" style="width:30px;height:30px;border-radius:8px;">
+            <svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;stroke:none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <span><span class="gradient-text-rose">The</span> One</span>
+        </a>
+        <p>Stop swiping. Start choosing. The dating app for intentional connections.</p>
+      </div>
+      <div class="footer-col"><h4>Product</h4><ul><li><a href="#how-it-works">How It Works</a></li><li><a href="#features">Features</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div class="footer-col"><h4>Connect</h4><ul><li><a href="#" target="_blank" rel="noopener">Twitter / X</a></li><li><a href="#" target="_blank" rel="noopener">Instagram</a></li><li><a href="#" target="_blank" rel="noopener">TikTok</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 The One. All rights reserved.</p>
+      <p>Not a guarantee of finding love. Results vary by individual.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<script>
+  // Init Firebase — using The One's Firebase project
+  firebase.initializeApp({
+    apiKey: "AIzaSyBKkYiae50y-uZN7gGm97Bu-5iXNv9P5fE",
+    authDomain: "theone-dating-app.firebaseapp.com",
+    projectId: "theone-dating-app",
+    storageBucket: "theone-dating-app.firebasestorage.app",
+    messagingSenderId: "777335450044",
+    appId: "1:777335450044:ios:d8f1673935c1b0251de3b9"
+  });
+  var db = firebase.firestore();
+
+  // Mobile nav
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  document.querySelectorAll('.nav-links a').forEach(function(a) {
+    a.addEventListener('click', function() { document.getElementById('navLinks').classList.remove('open'); });
+  });
+
+  // FAQ
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.parentElement;
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
+      if (!open) item.classList.add('open');
+    });
+  });
+
+  // Scroll animations
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.anim').forEach(function(el) { observer.observe(el); });
+
+  // Scroll to top button
+  var scrollBtn = document.getElementById('scrollTop');
+  if (scrollBtn) {
+    window.addEventListener('scroll', function() {
+      scrollBtn.classList.toggle('show', window.scrollY > 400);
+    }, { passive: true });
+  }
+
+  // Pricing toggle
+  var monthlyPrices = ['$0', '$14.99', '$29.99'];
+  var yearlyPrices = ['$0', '$11.99', '$23.99'];
+  var monthlyPeriods = ['forever', '/month', '/month'];
+  var yearlyPeriods = ['forever', '/mo (billed yearly)', '/mo (billed yearly)'];
+  function setPricing(mode) {
+    var cards = document.querySelectorAll('.price-card');
+    var prices = mode === 'yearly' ? yearlyPrices : monthlyPrices;
+    var periods = mode === 'yearly' ? yearlyPeriods : monthlyPeriods;
+    cards.forEach(function(card, i) {
+      var amt = card.querySelector('.price-amount');
+      var per = card.querySelector('.price-period');
+      if (amt) amt.textContent = prices[i];
+      if (per) per.textContent = periods[i];
+    });
+    document.getElementById('toggleMonthly').classList.toggle('active', mode === 'monthly');
+    document.getElementById('toggleYearly').classList.toggle('active', mode === 'yearly');
+  }
+
+  // Parallax-lite on hero glow
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y < 800) {
+        hero.style.setProperty('--parallax', (y * 0.15) + 'px');
+      }
+    }, { passive: true });
+  }
+
+  // Signup
+  function handleSignup(e) {
+    e.preventDefault();
+    var email = document.getElementById('signupEmail').value.trim();
+    var btn = e.target.querySelector('button');
+    if (!email) return;
+
+    btn.textContent = 'Saving...';
+    btn.style.opacity = '0.7';
+
+    db.collection('early_access').add({
+      email: email,
+      source: 'theone-website',
+      timestamp: new Date().toISOString(),
+      userAgent: navigator.userAgent
+    }).then(function() {
+      btn.textContent = "You're on the list!";
+      btn.style.background = 'rgba(230,57,70,0.15)';
+      btn.style.color = '#FFB3B8';
+      btn.style.boxShadow = 'none';
+      btn.style.opacity = '1';
+      document.getElementById('signupEmail').value = '';
+      if (typeof gtag === 'function') gtag('event', 'sign_up', { method: 'email' });
+    }).catch(function(err) {
+      console.error('Signup error:', err);
+      btn.textContent = 'Error — try again';
+      btn.style.opacity = '1';
+    });
+
+    setTimeout(function() {
+      btn.innerHTML = 'Get Early Access <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>';
+      btn.style.background = '';
+      btn.style.color = '';
+      btn.style.boxShadow = '';
+    }, 4000);
+  }
+</script>
+
+</body>
+</html>
