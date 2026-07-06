@@ -344,6 +344,38 @@
       border-radius: 2rem;
       overflow: hidden;
     }
+    /* Real device captures (framed PNGs with bezel + Dynamic Island baked in). */
+    .hero-phone-img {
+      display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto;
+    }
+    .hero-phone-back {
+      position: absolute; inset: 0; opacity: 0;
+      animation: heroFadeBack 9s ease-in-out infinite;
+    }
+    .hero-phone-img:not(.hero-phone-back) { animation: heroFadeFront 9s ease-in-out infinite; }
+    @keyframes heroFadeFront { 0%,40% {opacity:1;} 50%,90% {opacity:0;} 100% {opacity:1;} }
+    @keyframes heroFadeBack  { 0%,40% {opacity:0;} 50%,90% {opacity:1;} 100% {opacity:0;} }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-phone-back { display: none; }
+      .hero-phone-img:not(.hero-phone-back) { animation: none; }
+    }
+    /* Screenshots gallery */
+    .screens-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px;
+      max-width: 1100px; margin: 48px auto 0;
+    }
+    .screen-card { text-align: center; margin: 0; }
+    .screen-card img {
+      width: 100%; height: auto; display: block;
+      transition: transform 0.3s ease;
+    }
+    .screen-card:hover img { transform: translateY(-6px); }
+    .screen-card figcaption {
+      margin-top: 12px; font-size: 0.92rem; font-weight: 600; color: #fff;
+    }
+    @media (max-width: 860px) {
+      .screens-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; max-width: 520px; }
+    }
     /* Placeholder phone screens */
     .phone-placeholder {
       width: 264px; max-height: 520px; min-height: 480px;
@@ -713,56 +745,10 @@
       </div>
       <div class="hero-screenshot">
         <div class="hero-phone-wrap">
-          <div class="hero-phone-frame">
-            <div class="phone-screen">
-              <!-- Back screen: Chat view -->
-              <div class="phone-placeholder screen-chat phone-back">
-                <div class="phone-header">Conversation</div>
-                <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
-                  <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#D4A373,#A67B5B);display:flex;align-items:center;justify-content:center;">
-                    <span style="font-size:0.75rem;color:#fff;font-weight:700">S</span>
-                  </div>
-                  <div>
-                    <div style="font-size:0.8rem;font-weight:700;color:#fff">Sarah</div>
-                    <div style="font-size:0.6rem;color:var(--muted-fg)">Active now</div>
-                  </div>
-                </div>
-                <div class="phone-chat-msg">
-                  <div class="phone-chat-bubble received">I noticed you mentioned hiking the PCT. What section was your favorite?</div>
-                  <div class="phone-chat-bubble sent">The Sierra Nevada stretch was incredible. Have you done any long-distance trails?</div>
-                  <div class="phone-chat-bubble received">Just the JMT last summer! Already planning my next one.</div>
-                  <div class="phone-chat-bubble sent">That's amazing. I'd love to hear more about it over coffee sometime.</div>
-                  <div class="phone-chat-time">Just now</div>
-                </div>
-              </div>
-              <!-- Front screen: Discover view -->
-              <div class="phone-placeholder screen-discover phone-front">
-                <div class="phone-header">Discover</div>
-                <div class="phone-avatar"><span>S</span></div>
-                <div class="phone-name">Sarah, 27</div>
-                <div class="phone-meta">2.4 miles away</div>
-                <div class="phone-compat">
-                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="#FFB3B8" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                  92% Compatible
-                </div>
-                <div class="phone-bio">Avid hiker, amateur chef, and professional dog petter. Looking for someone who values depth over breadth.</div>
-                <div class="phone-interests">
-                  <span class="phone-tag">Hiking</span>
-                  <span class="phone-tag">Cooking</span>
-                  <span class="phone-tag">Travel</span>
-                  <span class="phone-tag">Dogs</span>
-                </div>
-                <div class="phone-actions">
-                  <div class="phone-btn pass">
-                    <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
-                  </div>
-                  <div class="phone-btn like">
-                    <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <img class="hero-phone-img" src="screenshots/discover.png" width="960" height="2034"
+               alt="The One app — Discover screen: choose your next connection from real, quality-matched profiles">
+          <img class="hero-phone-img hero-phone-back" src="screenshots/matches.png" width="960" height="2034"
+               alt="The One app — Matches: one conversation at a time, so every match gets your full attention" aria-hidden="true">
         </div>
       </div>
     </div>
@@ -818,6 +804,37 @@
         <div class="chat-bubble chat-user">That's amazing. I'd love to hear more about it over coffee sometime.</div>
         <div class="chat-bubble chat-match" style="margin-bottom:0">I'd really like that. How about Saturday at the place downtown?</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- Screenshots gallery -->
+<section id="screens">
+  <div class="container">
+    <div class="anim" style="text-align:center;max-width:640px;margin:0 auto;">
+      <span class="section-label">Inside the app</span>
+      <h2 class="section-title">See it in <span class="gradient-text-rose">action.</span></h2>
+      <p class="section-desc" style="margin:14px auto 0">Real screens from The One — no swipe pile, no noise. Just the people worth your attention.</p>
+    </div>
+    <div class="screens-grid">
+      <figure class="screen-card anim anim-d1">
+        <img src="screenshots/discover.png" width="960" height="2034" loading="lazy" alt="Discover — one quality-matched profile at a time with a compatibility score">
+        <figcaption>Choose, don't swipe</figcaption>
+      </figure>
+      <figure class="screen-card anim anim-d2">
+        <img src="screenshots/matches.png" width="960" height="2034" loading="lazy" alt="Matches — conversations are capped so every match gets your full attention">
+        <figcaption>One conversation at a time</figcaption>
+      </figure>
+      <figure class="screen-card anim anim-d3">
+        <img src="screenshots/likes.png" width="960" height="2034" loading="lazy" alt="Likes You — see who's interested and choose your next connection">
+        <figcaption>See who's interested</figcaption>
+      </figure>
+      <figure class="screen-card anim anim-d4">
+        <img src="screenshots/welcome.png" width="960" height="2034" loading="lazy" alt="The One welcome screen — stop swiping, start choosing">
+        <figcaption>Stop swiping. Start choosing.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
